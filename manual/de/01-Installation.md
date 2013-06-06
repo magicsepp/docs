@@ -29,24 +29,144 @@ curl -L http://install.contao.org | tar -xzp
 
 ### Das Contao-Installtool
 
+Stellen Sie sicher, dass Sie möglichst vor dem Beginn der Installation die 
+Zugangsdaten für die Datenbank kennen.
+
 Um das Contao-Installtool aufzurufen, hängen Sie einfach `/contao/install.php`
-an die URL Ihrer Contao-Installation an. Beachten Sie, dass das Installtool mit
-einem Passwort gegen Brute Force-Attacken geschützt ist und gesperrt wird, wenn
-dreimal hintereinander ein falsches Passwort eingegeben wurde. Um diese Sperre
-aufzuheben, öffnen Sie die Datei `system/config/localconfig.php` in einem
-Texteditor, finden Sie die folgende Zeile und setzen Sie sie auf `0`.
+an die URL Ihrer Contao-Installation an. 
+
+
+#### Lizenz akzeptieren (bei der Erstinstallation)
+
+Beim erstmaligen Aufruf der Installation wird Ihnen der Lizenztext der GNU 
+Lesser General Public License angezeigt. Sie müssen die Lizenz akzeptieren um 
+mit der Installation fortzufahren.
+
+![](https://raw.github.com/contao/docs/3.1/manual/de/images/installation_lizenz.jpg)
+
+Es kann sein, dass Ihnen nicht die Lizenz sondern stattdessen die Aufforderung 
+zur Eingabe von FTP-Daten angezeigt wird. Lesen Sie in diesem Fall den Abschnitt 
+zum Thema [Safe Mode Hack][14]
+
+
+#### Installtool-Passwort
+
+Damit das Installtool gegen unberechtigte Zugriffe geschützt ist, vergeben Sie 
+dafür bei der Erstinstallation ein sicheres Passwort (mindestens 8 Zeichen).
+
+![](https://raw.github.com/contao/docs/3.1/manual/de/images/installation_installtool-passwort.jpg)
+
+Bei späteren Aufrufen des Installtools müssen Sie dieses Passwort eingeben um 
+auf die weiteren Funktionen zuzugreifen. 
+
+![](https://raw.github.com/contao/docs/3.1/manual/de/images/installation_anmeldung.jpg)
+
+Wenn das Passwort dreimal hintereinander falsch eingegeben wurde, wird es als 
+Schutz gegen Brute Force-Attacken gesperrt. Um diese Sperre aufzuheben, öffnen 
+Sie die Datei `system/config/localconfig.php` in einem Texteditor, finden Sie 
+die folgende Zeile und setzen Sie sie auf `0`.
 
 ``` {.php}
 $GLOBALS['TL_CONFIG']['installCount'] = 0; // Hebt die automatische Sperre auf
 ```
 
+Wenn Sie das Passwort vergessen haben und neu vergeben müssen, öffnen Sie die 
+Datei `system/config/localconfig.php` in einem Texteditor und suchen Sie die 
+Zeile, die hiermit beginnt:
+
+``` {.php}
+$GLOBALS['TL_CONFIG']['installPassword'] =
+```
+
+Löschen Sie diese Zeile und rufen Sie nach dem Speichern und Hochladen der 
+aktualisierten Datei wieder das Contao-Installationstool auf. Dadurch werden Sie 
+aufgefordert wieder ein neues Passwort zu vergeben.
+
+
+#### Verschlüsselungsschlüssel
+
+Wie der Name bereits andeutet, wird der Schlüssel verwendet um Daten 
+verschlüsselt zu speichern. Bei durchschnittlichen Contao-Installationen ist 
+das nicht relevant, so dass das Installtool den Abschnitt automatisch befüllt 
+und direkt zum nächsten Abschnitt springt. 
+
+Einmal damit verschlüsselte Daten können nur mit diesem Schlüssel 
+wiederhergestellt werden. Ändern Sie ihn daher nur dann manuell, falls es noch 
+keine verschlüsselten Daten gibt.
+
+![](https://raw.github.com/contao/docs/3.1/manual/de/images/installation_verschluesselung.jpg)
+
 
 #### Datenbankverbindung herstellen
 
-Melden Sie sich an der Administrationsoberfläche Ihres Servers (z.B. "Plesk"
-oder "Cpanel") an und erstellen Sie eine neue Datenbank für Contao. Geben Sie
-die Zugangsdaten im Contao-Installtool ein und beachten Sie die abweichende
-Schreibweise `UTF8` anstatt `UTF-8` in MySQL!
+Geben Sie die Zugangsdaten für die Datenbank im Contao-Installtool ein.
+
+<table>
+  <tr>
+    <th>Einstellung</th>
+    <th>Beschreibung</th>
+  </tr>
+  <tr>
+    <td>Treiber</td>
+    <td>Wählen Sie den passenden Datenbanktreiber ('MySQL'/'MySQLi'[13]).</td>
+  </tr>
+  <tr>
+    <td>Host</td>
+    <td>Geben Sie die Domain oder IP-Adresse des Datenbankservers ein. 
+    'localhost' ist bei vielen Anbietern ebenfalls eine erlaubte Host-Angabe.</td>
+  </tr>
+  <tr>
+    <td>Benutzername</td>
+    <td>Geben Sie den Benutzernamen der Datenbank ein.</td>
+  </tr>
+  <tr>
+    <td>Passwort</td>
+    <td>Geben Sie das Passwort der Datenbank ein.</td>
+  </tr>
+  <tr>
+    <td>Datenbank</td>
+    <td>Geben Sie den Namen der Datenbank ein.</td>
+  </tr>
+  <tr>
+    <td>Dauerhafte Verbindung</td>
+    <td>Wählen Sie, ob eine dauerhafte Verbindung zur Datenbank aufrecht 
+    erhalten werden soll. Eine dauerhafte Verbindung erhöht die Performance, da 
+    nicht ständig eine neue Verbindung aufgebaut werden muss. Wenn die Datenbank 
+    auf einem anderen Server liegt oder Shared-Hosting genutzt wird, kann eine 
+    dauerhafte Verbindung jedoch zu Timeouts wegen Überlastung führen. 
+    Aktivieren Sie die dauerhafte Verbindung daher nur auf entsprechend starken 
+    Servern bzw. fragen Sie zur Sicherheit beim Webhoster nach.</td>
+  </tr>
+  <tr>
+    <td>Zeichensatz</td>
+    <td>Geben Sie den Zeichensatz der Datenbankverbindung ein. Beachten Sie, dass 
+    der UTF-8-Zeichensatz als 'UTF8' (ohne Bindestrich) geschrieben wird!</td>
+  </tr>
+  <tr>
+    <td>Portnummer</td>
+    <td>Geben Sie hier die Portnummer des Datenbankservers ein. Standard ist 
+    '3306'.</td>
+  </tr>
+  <tr>
+    <td>Socket-Datei</td>
+    <td>Meistens können Sie dieses Feld leer lassen. Tragen Sie hier nur dann 
+    die Angaben zur Socket-Datei ein, wenn es anders nicht möglich ist, eine 
+    Verbindung zur Datenbank herzustellen.</td>
+  </tr>
+</table>
+
+![](https://raw.github.com/contao/docs/3.1/manual/de/images/installation_datenbankverbindung.jpg)
+
+
+#### Kollation
+
+Die Kollation wird von Contao standardmäßig auf 'utf8_general_ci' gesetzt 
+und dieser gesamte Abschnitt übersprungen. Üblicherweise müssen Sie an dieser 
+Einstellung nichts ändern. Falls es wirklich nötig ist, können Sie hier eine 
+andere Kollation einstellen. Die Änderung bezieht sich auf alle Tabellen mit 
+tl_-Präfix.
+
+![](https://raw.github.com/contao/docs/3.1/manual/de/images/installation_kollation.jpg)
 
 
 #### Tabellen aktualisieren
@@ -57,6 +177,8 @@ Empfehlungen aufmerksam, denn Contao kennt nur seine eigenen Tabellen und wird
 versuchen, vermeintlich nicht benötigte Tabellen anderer Programme
 "aufzuräumen". Bestätigen Sie die Änderungen durch Anklicken der "Datenbank
 aktualisieren"-Schaltfläche.
+
+![](https://raw.github.com/contao/docs/3.1/manual/de/images/installation_tabellen_pruefen.jpg)
 
 
 #### Ein Template importieren
@@ -69,6 +191,7 @@ dem Drop-Down-Menü und klicken Sie auf die "Template importieren"-Schaltfläche
 
 **Beim Import eines Templates werden bestehende Daten überschrieben!**
 
+![](https://raw.github.com/contao/docs/3.1/manual/de/images/installation_template_importieren.jpg)
 
 #### Administrator-Konto erstellen
 
@@ -361,3 +484,5 @@ Hosting-Partnern][11].
 [10]: https://community.contao.org/de/forumdisplay.php?67-Erfahrungen-mit-Webhostern
 [11]: https://contao.org/de/partners.html?search=services&for=partner_hosting
 [12]: 01-Installation.md#contao-systemvoraussetzungen
+[13]: http://de.wikipedia.org/wiki/MySQLi 
+[14]: 01-Installation.md#den-safe-mode-hack-verwenden
