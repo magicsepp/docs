@@ -8,6 +8,11 @@ wie man einen Webserver für Contao konfiguriert.
 
 ## Contao installieren
 
+Bevor Sie Contao installieren, sollten Sie die [Systemanforderungen][12] prüfen. 
+Es ist wichtig, dass der Server/das gebuchte Webhosting-Paket diese 
+Mindestanforderungen erfüllt, da sonst sehr wahrscheinlich Probleme auftreten 
+bzw. das CMS unnutzbar ist.
+
 Laden Sie sich zunächst das [aktuelle Contao-Archiv][1] herunter und entpacken
 Sie es auf Ihrem lokalen Rechner. Verschieben Sie die Dateien in das
 `htdocs`-Verzeichnis Ihrer XAMPP-Installation oder kopieren Sie sie mit einem
@@ -297,13 +302,25 @@ und PHP 5 aktiviert.
 
 ### Contao-Systemvoraussetzungen
 
-Contao benötigt einen Webserver wie Apache oder IIS mit PHP- und MySQL-Support.
-PHP muss mindestens in der Version 5.3.2 vorliegen und MySQL in der Version 4.1,
-wobei wir für eine bessere Performance MySQL 5 empfehlen. Außerdem benötigen
-Sie die PHP-Erweiterungen "GDlib" (Bildbearbeitung) und "SOAP" (Extension
-Repository) sowie optional "mbstring" (internationale Zeichen) und "mcrypt"
-(Verschlüsselung). Contao wurde erfolgreich in allen modernen Browsern wie
-Firefox (ab Version 2) oder Internet Explorer (ab Version 7) getestet.
+Contao hat nur sehr geringe Systemanforderungen und läuft daher auf den meisten 
+Webhosting-Paketen. Bitte stellen Sie sicher, dass diese Mindestanforderungen 
+erfüllt werden.
+
+Die Contao-Administrationsoberfläche (Backend) wurde wurde erfolgreich in allen 
+modernen Browsern wie Firefox oder Internet Explorer getestet.
+
+* Webserver: Apache oder IIS mit PHP- und MySQL-Support
+* PHP: ab Version 5.3.2
+* MySQL/MySQLi: Version 4.1 oder höher (empfohlen: Version 5 oder höher)
+
+Installierte PHP-Erweiterungen: 
+* "GDlib" (Bildbearbeitung)
+* "SOAP" (Extension Repository) 
+* "mbstring" (internationale Zeichen) - optional
+* "mcrypt" (Verschlüsselung) - optional
+
+Sonstiges:
+* Apache-Modul "mod_rewrite" (für suchmaschinenoptimierte URLs) - optional
 
 
 ### Der Contao-Check
@@ -343,3 +360,4 @@ Hosting-Partnern][11].
 [9]: https://github.com/contao/check
 [10]: https://community.contao.org/de/forumdisplay.php?67-Erfahrungen-mit-Webhostern
 [11]: https://contao.org/de/partners.html?search=services&for=partner_hosting
+[12]: 01-Installation.md#contao-systemvoraussetzungen
