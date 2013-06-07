@@ -108,7 +108,7 @@ Geben Sie die Zugangsdaten für die Datenbank im Contao-Installtool ein.
   </tr>
   <tr>
     <td>Treiber</td>
-    <td>Wählen Sie den passenden Datenbanktreiber ('MySQL'/'[MySQLi][13]').</td>
+    <td>Wählen Sie den passenden Datenbanktreiber: MySQL / [MySQLi][13]</td>
   </tr>
   <tr>
     <td>Host</td>
