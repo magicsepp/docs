@@ -46,7 +46,7 @@ mit der Installation fortzufahren.
 
 Es kann sein, dass Ihnen nicht die Lizenz sondern stattdessen die Aufforderung 
 zur Eingabe von FTP-Daten angezeigt wird. Lesen Sie in diesem Fall den Abschnitt 
-zum Thema [Safe Mode Hack][14]
+zum Thema [Safe Mode Hack][12].
 
 
 #### Installtool-Passwort
@@ -108,7 +108,7 @@ Geben Sie die Zugangsdaten für die Datenbank im Contao-Installtool ein.
   </tr>
   <tr>
     <td>Treiber</td>
-    <td>Wählen Sie den passenden Datenbanktreiber: MySQL / [MySQLi][13]</td>
+    <td>Wählen Sie den passenden Datenbanktreiber.</td>
   </tr>
   <tr>
     <td>Host</td>
@@ -483,6 +483,4 @@ Hosting-Partnern][11].
 [9]: https://github.com/contao/check
 [10]: https://community.contao.org/de/forumdisplay.php?67-Erfahrungen-mit-Webhostern
 [11]: https://contao.org/de/partners.html?search=services&for=partner_hosting
-[12]: 01-Installation.md#contao-systemvoraussetzungen
-[13]: http://de.wikipedia.org/wiki/MySQLi 
-[14]: 01-Installation.md#den-safe-mode-hack-verwenden
+[12]: 01-Installation.md#den-safe-mode-hack-verwenden
