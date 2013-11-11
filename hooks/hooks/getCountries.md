@@ -64,6 +64,7 @@ Return an array with additional countries you want to add.
 ### References ###
 
 - [system/libraries/Controller.php](https://github.com/contao/core/blob/2.11.7/system/libraries/Controller.php#L835)
+moved to System.php
 
 
 ### See Also ###
